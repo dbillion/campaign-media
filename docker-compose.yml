@@ -1,0 +1,41 @@
+services:
+  frontend:
+    build:
+      context: ./campaign-frontend
+    ports:
+      - "4173:4173"
+    depends_on:
+      - backend
+    command: yarn serve --host  # Ensure this command is correct
+    environment:
+      - YARN_VERSION=4.6.0  # Ensure Yarn version is at least 4.6
+    volumes:
+      - ./campaign-frontend:/app
+    entrypoint: >
+      sh -c "
+      yarn set version 4.6.0 &&
+      yarn install &&
+      yarn serve --host
+      "
+
+  backend:
+    build:
+      context: ./campaign-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/postgres
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
