@@ -1,0 +1,22 @@
+.login-container {
+  text-align: center;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+/* Optional decorative elements */
+.login-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(52, 152, 219, 0.1) 0%, transparent 60%),
+              radial-gradient(circle at bottom left, rgba(41, 128, 185, 0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
