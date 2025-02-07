@@ -1,0 +1,3 @@
+[submodule "campaign-frontend"]
+    path = campaign-frontend
+    url = <your-repository-url>
